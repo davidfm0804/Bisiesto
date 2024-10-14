@@ -1,25 +1,18 @@
 <?php
-require 'proceso.php';
+require 'proceso.php'; // Asegúrate de incluir el archivo de la clase correcta
 
 // Obtener la fecha desde el formulario
 if (isset($_POST['fecha']) && !empty($_POST['fecha'])) {
     $cadenaFecha = $_POST['fecha'];
     $objFecha = new Fecha();
     
-    // Comprobar si es año bisiesto y ajustar febrero si es necesario
-    $objFecha->EsBisiesto($cadenaFecha);
-    
-    // Extraer el mes de la fecha proporcionada
+    // Extraer el día, mes y año de la fecha proporcionada y ajustar febrero si es bisiesto
     $fechaDividida = $objFecha->ConvertirFecha($cadenaFecha);
-    $mes = $fechaDividida[1]; // El mes proporcionado en la fecha (formato "dd/m/yyyy")
+    $dia = $fechaDividida[0]; // El día proporcionado en la fecha
+    $mes = $fechaDividida[1]; // El mes proporcionado en la fecha
+    $anio = $fechaDividida[2]; // El año proporcionado en la fecha
 
-    // Mostrar la cantidad de días del mes
-    if (isset($objFecha->meses[$mes])) {
-        echo "El mes de " . $objFecha->meses[$mes][0] . " tiene " . $objFecha->meses[$mes][1] . " días.";
-    } else {
-        echo "Mes no válido.";
-    }
-} else {
-    echo "Por favor, introduce una fecha en el formato correcto (dd/mm/yyyy).";
-}
+    // Redirigir a resultado.php pasando los datos en la URL
+    header("Location: visualizar.php?dia=$dia&mes=$mes&anio=$anio");
+}   
 ?>

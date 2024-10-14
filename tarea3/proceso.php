@@ -19,27 +19,22 @@ class Fecha {
         ];
     }
 
-    public function ConvertirFecha($fecha): array {
-        $partirFecha = explode("/", $fecha);
-        return $partirFecha;
+    private function EsBisiesto($anio) {
+        // Verificar si el año es bisiesto y actualizar febrero
+        if ($anio % 4 == 0 && ($anio % 100 != 0 || $anio % 400 == 0)) {
+            $this->meses[2][1] = 29; // Ajustar los días de febrero a 29
+        }
     }
 
-    public function EsBisiesto($fecha) {
-        $fechaDividida = $this->ConvertirFecha($fecha);
+    public function ConvertirFecha($fecha): array {
+        $fechaDividida = explode("/", $fecha);
         $anio = $fechaDividida[2];
-        $mes = $fechaDividida[1];
 
-        // Verificar si el año es bisiesto
-        if ($anio % 4 == 0 && ($anio % 100 != 0 || $anio % 400 == 0)) {
-            $resultado = true;
-        } else {
-            $resultado = false;
-        }
+        // Llamar a EsBisiesto para ajustar el mes de febrero si es necesario
+        $this->EsBisiesto($anio);
 
-        // Si el mes es febrero (2) y el año es bisiesto, ajustar los días
-        if ($mes == 2 && $resultado) {
-            $this->meses[2][1] = 29;
-        }
+        // Devolver la fecha dividida
+        return $fechaDividida;
     }
 }
 ?>
