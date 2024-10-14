@@ -1,5 +1,4 @@
 <?php
-// Incluir la clase Fecha
 require 'proceso.php';
 
 // Obtener la fecha desde el formulario
@@ -16,7 +15,7 @@ if (isset($_POST['fecha']) && !empty($_POST['fecha'])) {
 
     // Mostrar la cantidad de días del mes
     if (isset($objFecha->meses[$mes])) {
-        echo "El mes de {$objFecha->meses[$mes][0]} tiene {$objFecha->meses[$mes][1]} días.";
+        echo "El mes de " . $objFecha->meses[$mes][0] . " tiene " . $objFecha->meses[$mes][1] . " días.";
     } else {
         echo "Mes no válido.";
     }
