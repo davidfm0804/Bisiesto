@@ -8,26 +8,25 @@ if (isset($_POST['num1'], $_POST['num2'], $_POST['operacion'])) {
     $operacion = $_POST['operacion'];
 
     // Crear una instancia de la clase Proceso
-    $proceso = new proceso();
+    $proceso = new proceso($num1, $num2);
 
     // Realizar la operación solicitada
     $resultado = "";
     switch ($operacion) {
         case '+':
-            $resultado = $proceso->sumar($num1, $num2);
+            $resultado = $proceso->sumar();
             break;
         case '-':
-            $resultado = $proceso->restar($num1, $num2);
+            $resultado = $proceso->restar();
             break;
         case '*':
-            $resultado = $proceso->multiplicar($num1, $num2);
+            $resultado = $proceso->multiplicar();
             break;
         case '/':
-            $resultado = $proceso->dividir($num1, $num2);
+            $resultado = $proceso->dividir();
             break;
         default:
             $resultado = "Operación no válida.";
-            break;
     }
 
     // Mostrar el resultado
