@@ -10,7 +10,9 @@ if (isset($_GET['dia'], $_GET['mes'], $_GET['anio'])) {
     $objFecha = new Fecha();
 
     // Ajustar febrero si es un año bisiesto
-    $objFecha->ConvertirFecha("$dia/$mes/$anio");
+    $resultado=$objFecha->ConvertirFecha("$dia/$mes/$anio");
+    echo $resultado;
+
 
     // Mostrar la cantidad de días del mes y la información
     if (isset($objFecha->meses[$mes])) {
